@@ -1,5 +1,6 @@
 #include "/usr/include/python3.5m/Python.h"
 #include <string.h>
+#include "RB_Tree.h"
 
 
 /*
@@ -15,6 +16,7 @@ static PyObject *myDict_setvalue(PyObject *self, PyObject *args);
 
 /************************************************************************************/
 
+extern RB_Node *const nil;
 char buf[100] = "hello";
 
 int a;
