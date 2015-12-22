@@ -1,7 +1,8 @@
 import myDict
 
-s = myDict.reverse("(a+a)*3")
+s = myDict.getvalue()
 
 print(s)
+
 
 

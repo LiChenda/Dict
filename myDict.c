@@ -1,18 +1,23 @@
 #include "/usr/include/python3.5m/Python.h"
 #include <string.h>
-#include "reverse_polish.h"
 
 
 /*
  *  module functions define here
  *
  * */
+char* showinfo();
+int getvalue();
+void setvalue(int value);
 static PyObject *myDic_showinfo(PyObject *self, PyObject *args);
-static PyObject *myDic_reverse(PyObject *self, PyObject *args);
+static PyObject *myDict_getvalue(PyObject *self, PyObject *args);
+static PyObject *myDict_setvalue(PyObject *self, PyObject *args);
 
 /************************************************************************************/
 
 char buf[100] = "hello";
+
+int a;
 
 static PyMethodDef myDictMethods[] = {
     {
@@ -22,8 +27,14 @@ static PyMethodDef myDictMethods[] = {
         "test for string return"
     },
     {
-        "reverse",
-        myDic_reverse,
+        "getvalue",
+        myDict_getvalue,
+        METH_VARARGS,
+        "usestac"
+    },
+    {
+        "setvalue",
+        myDict_setvalue,
         METH_VARARGS,
         "usestac"
     },
@@ -42,10 +53,17 @@ static struct PyModuleDef myDict =
     NULL
 };
 
-char* showinfo();
-char* reverse(char* input);
-
 static PyObject *
+myDict_setvalue(PyObject *self, PyObject *args)
+{
+    int value;
+    if(!PyArg_ParseTuple(args, "i", &value))
+        return NULL;
+    setvalue(value);
+    return Py_BuildValue("i", a);
+}
+
+    static PyObject *
 myDic_showinfo(PyObject *self, PyObject *args)
 {
     char* str;
@@ -55,23 +73,26 @@ myDic_showinfo(PyObject *self, PyObject *args)
     return Py_BuildValue("s", str);
 }
 
-static PyObject *
-myDic_reverse(PyObject *self, PyObject *args)
+
+    static PyObject *
+myDict_getvalue(PyObject *self, PyObject *args)
 {
-    char *str, *input;
-
-    if(!PyArg_ParseTuple(args,"s", &input))
+    if(!PyArg_ParseTuple(args,""))
         return NULL;
-    str = reverse(input);
-    return Py_BuildValue("s", str);
-
+    return Py_BuildValue("i", a);
 }
 
 
-PyMODINIT_FUNC
+    PyMODINIT_FUNC
 PyInit_myDict(void)
 {
+    a = 100;
     return PyModule_Create(&myDict);
+}
+
+int getvalue()
+{
+    return a;
 }
 
 char* showinfo()
@@ -80,15 +101,8 @@ char* showinfo()
     return buf; 
 }
 
-char* reverse(char* input)
+void setvalue(int value)
 {
-    if(process(input) == ERR)
-    {
-        char err[] = "input error";
-        strcpy(output, err);
-    }
-    return output;
+    a = value;
+    return;
 }
-
-
-
