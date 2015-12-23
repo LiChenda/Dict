@@ -14,21 +14,22 @@ int deep = 0;
 int main(int argc, char *argv[])
 {
 
-    RB_Node * Troot = nil;
-    nil->color = BLACK;
+    initTree();
+    char en[] = "hello";
+    char ch[] = "你好";
+    char sen[] = "hello world";
+    insert_word(en, ch, sen);
+    en[0] = 'y';
+    insert_word(en, ch, sen);
+    en[1] = 'u';
+    insert_word(en, ch, sen);
+    en[1] = 'r';
+    insert_word(en, ch, sen);
 
-    RB_Node array[N];
-    int i;
-    for (i = 0; i < N; ++i) {
-        array[i].testnum = rand();
-    }
-    for (i = 0; i < N; ++i) {
-        RB_insert(&Troot, &array[i]); 
-    }
 
-    visit(Troot, 0);
-//    printf("%d\n", deep);
+    wordlist a = suggest_word(en);
     
+    printf("%s\n", a.word->en);
     return 0;
 }
 

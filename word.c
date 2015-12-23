@@ -3,27 +3,27 @@
 #include <string.h>
 
 
-void setstr(char *des, char *src)
+void setstr(char **des, char *src)
 {
-    if(des)
-        free(des);
-    des = (char*)malloc((strlen(src) + 1) * sizeof(char));
-    strcpy(des, src);
+    if(*des)
+        free(*des);
+    *des = (char*)malloc((strlen(src) + 1) * sizeof(char));
+    strcpy(*des, src);
 }
 
 void setEn(char *en, Word *word)
 {
-    setstr(word->en, en);
+    setstr(&(word->en), en);
 }
 
 void setCh(char *ch, Word *word)
 {
-    setstr(word->ch, ch);
+    setstr(&(word->ch), ch);
 }
 
 void setSentences(char *sen, Word *word)
 {
-    setstr(word->sentences, sen);
+    setstr(&(word->sentences), sen);
 }
 
 Word *createWord(char *en, char *ch, char *sentences)

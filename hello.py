@@ -1,8 +1,14 @@
 import myDict
+import loaddata
 
-s = myDict.getvalue()
+words = loaddata.readdatas()
 
-print(s)
+for word in words:
+    myDict.insert_word(word[0], word[1], word[2])
+
+
+
+print(len(words))
 
 
 

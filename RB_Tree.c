@@ -1,9 +1,123 @@
 #include "RB_Tree.h"
 #include <string.h>
+#include <stdlib.h>
 
 
 RB_Node nill;
 RB_Node *const nil = &nill; 
+
+RB_Node *rbroot = NULL;
+
+
+RB_Node **initTree()
+{
+    rbroot = nil;
+    nil->color = BLACK;
+    return &rbroot;
+}
+
+void insert_word(char* en, char* ch, char* sen)
+{
+    Word *word = createWord(en, ch, sen);
+    RB_Node* node = (RB_Node*)malloc(sizeof(RB_Node));
+    node->word = word;
+    RB_insert(&rbroot, node);
+}
+
+wordlist head = {NULL, NULL, 0};
+wordlistnode* tail = NULL;
+void dequene()
+{
+    if(head.next)
+    {
+        wordlistnode* tmp = head.next;
+        head.next = tmp->next;
+        free(tmp);
+        head.len --;
+    }
+
+}
+
+void chilinquene(RB_Node *root, int deep)
+{
+    if(root == nil || deep == 0)
+        return;
+    chilinquene(root->left, deep - 1);
+    chilinquene(root->right, deep - 1);
+    inquene(root->word);
+
+}
+
+
+
+void inquene(Word *word)
+{
+    wordlistnode *w = (wordlistnode*)(malloc(sizeof(wordlistnode)));
+    w->word = word;
+    w->next = NULL;
+    if(!tail)
+        head.next = w;
+    else
+        tail->next = w;
+    tail = w;
+
+    head.len ++;
+    if(head.len > 5)
+        dequene();
+}
+void cleanQueen()
+{
+    while(head.next)
+        dequene();
+    tail = head.next;
+    head.word = NULL;
+}
+
+wordlist suggest_word(char* en)
+{
+    cleanQueen();
+    RB_Node *x = rbroot;
+    while(x != nil)
+    {
+        inquene(x->word);
+        int cmp = strcmp(en, x->word->en);
+        if(!cmp)
+        {
+            head.word = x->word;
+            break;
+        }
+        if(cmp > 0)
+            x = x->right;
+        else
+            x = x->left;
+    }
+    if(x != nil)
+    {
+        chilinquene(x->left, 1);
+        chilinquene(x->right, 1);
+
+    }
+
+    return head;
+}
+
+Word* search_word(char* en)
+{
+    RB_Node *x = rbroot;
+    while(x != nil)
+    {
+        int cmp = strcmp(en, x->word->en);
+        if(!cmp)
+            return x->word;
+        if(cmp > 0)
+            x = x->right;
+        else
+            x = x->left;
+    }
+    return NULL; 
+}
+
+
 
 void leftRotate(RB_Node **Troot, RB_Node *x)
 {
@@ -68,8 +182,8 @@ void RB_insert(RB_Node **Troot, RB_Node *z)
 
 int cmpkey(RB_Node *a, RB_Node *b)
 {
-    return a->testnum > b->testnum ? 1 : -1; 
-    // return strcmp(a->word->en, b->word->en); 
+    //return a->testnum > b->testnum ? 1 : -1; 
+    return strcmp(a->word->en, b->word->en) > 0 ? 1 : -1; 
 }
 
 void RB_insert_fixup(RB_Node **Troot, RB_Node *z)
