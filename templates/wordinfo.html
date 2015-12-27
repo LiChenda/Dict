@@ -1,0 +1,12 @@
+<h1>{{w}}</h1>
+{%for m in meaning%}
+<span class = 'label label-info'>{{m['part_of_speech']}} {{m['explanation']}}</span>
+<h1> </h1>
+{%endfor%}
+
+<div class = "container">
+{%for s in examples%}
+<h3>"{{s['sentence']}}"</h3>
+<h4>{{s['translation']}}</h4>
+{%endfor%}
+</div>

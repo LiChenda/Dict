@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href={{ url_for('static', filename='css/bootstrap.css')}}>
+        <script src={{ url_for('static', filename='js/jquery.js')}}></script>
+        <script src={{ url_for('static', filename='js/bootstrap.js')}}></script>
+        <script src={{ url_for('static', filename='js/typeahead.bundle.js')}}></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <h2>En-Ch Dictionary</h2>
+            <div id="inputword" >
+                <input class="typeahead" id='inputed' type="text"  placeholder="Search Words">
+                <link rel="stylesheet" href={{ url_for('static', filename='css/typ.css')}}>
+                <button id = "searchbtn" class="btn btn-lg  btn-primary">Search</button>
+            </div>
+            <div id = 'wordinfo'> </div>
+        </div>
+        <script src={{ url_for('static', filename='js/index.js')}}></script>
+        <script src={{ url_for('static', filename='js/search.js')}}></script>
+
+    </body> 
+</html>
+
