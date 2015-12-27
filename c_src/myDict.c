@@ -140,8 +140,10 @@ myDict_modify_word(PyObject *self, PyObject *args)
     char *en, *sen; 
     if(!PyArg_ParseTuple(args, "ss", &en,  &sen))
         return NULL;
-    modify_word(en,sen);
-    return Py_BuildValue("s", en);
+    if(modify_word(en,sen))
+        return Py_BuildValue("s", "false");
+    else
+        return Py_BuildValue("s", "ture");
 }
     
 

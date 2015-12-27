@@ -47,7 +47,7 @@ typedef struct _words {
 
 RB_Node **initTree();
 void insert_word(char* en,  char* sen);
-void modify_word(char*en, char* sen);
+int modify_word(char*en, char* sen);
 Word* search_word(char* en);
 wordlist suggest_word(char* en);
 

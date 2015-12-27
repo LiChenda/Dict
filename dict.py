@@ -1,7 +1,6 @@
 import dic_tree
 import json
 
-
 def intitfromfile(filename):
     words = [] 
     with open(filename, 'r') as f:
@@ -19,10 +18,7 @@ def searchWord(word_en):
 def modifyWord(item):
     s = json.dumps(item)
     word_en = item['word']
-    dic_tree.modify_word(word_en, s)
-    return
-
-
+    return dic_tree.modify_word(word_en, s)
 
 def insertWord(item):
     dic_tree.insert_word(item['word'], json.dumps(item))

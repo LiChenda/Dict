@@ -24,17 +24,17 @@ void insert_word(char* en, char* sen)
     RB_insert(&rbroot, node);
 }
 
-void modify_word(char*en, char* sen)
+int modify_word(char*en, char* sen)
 {
     Word *word = search_word(en);
     if(word == NULL)
     {
-        return;
+        return -1;
     }
     else
     {
         setSentences(sen, word);
-        return;
+        return 0;
     }
 }
 
@@ -75,7 +75,7 @@ void inquene(Word *word)
     tail = w;
 
     head.len ++;
-    if(head.len > 15)
+    if(head.len > 30)
         dequene();
 }
 void cleanQueen()
@@ -106,8 +106,8 @@ wordlist suggest_word(char* en)
     }
     if(x != nil)
     {
-        chilinquene(x->left, 3);
-        chilinquene(x->right, 3);
+        chilinquene(x->left, 4);
+        chilinquene(x->right, 4);
 
     }
 

@@ -8,11 +8,34 @@ def search(word):
     item = dict.searchWord(word)
     if(item):
         mean = item['meanings']  
-        print(mean)
         sen = item['examples']
         return render_template('wordinfo.html', w = word,\
                 meaning = mean, examples = sen)
     return '' 
+
+@app.route('/edit')
+def edit():
+    word = request.args.get('word')
+    num = request.args.get('num')
+    item = dict.searchWord(word)
+    if(item):
+        sen = item['examples'][int(num)-1]
+        return render_template('edit.html', en = sen['sentence'],\
+                ch = sen['translation'], i = int(num))
+    return '' 
+
+@app.route('/modifysen', methods=['POST'])
+def modifysen():
+    word = request.form['word']
+    num = request.form['num']
+    en = request.form['en']
+    ch = request.form['ch']
+    item = dict.searchWord(word)
+    item['examples'][int(num) - 1]['sentence'] = en
+    item['examples'][int(num) - 1]['translation'] = ch
+    return dict.modifyWord(item)
+    
+
 
 @app.route('/typeahead')
 def typeahead():
@@ -30,3 +53,4 @@ def you():
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
+
