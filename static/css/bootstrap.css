@@ -2733,6 +2733,14 @@ select[multiple].form-group-sm .typeahead {
   font-size: 12px;
   line-height: 1.5;
 }
+.input-lg-blk {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  width: 100%;
+}
 .input-lg {
   height: 46px;
   padding: 10px 16px;

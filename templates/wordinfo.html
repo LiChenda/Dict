@@ -1,18 +1,30 @@
-<h1 id = 'word_en'>{{w}}</h1>
-{%for m in meaning%}
-<span class = 'label label-info'>{{m['part_of_speech']}} {{m['explanation']}}</span>
-<h1> </h1>
-{%endfor%}
+
+<div class = 'panel-heading'>
+    <h1 id = 'word_en'>{{w}}</h1>
+    {%for m in meaning%}
+    <span class = 'label label-info'>{{m['part_of_speech']}} {{m['explanation']}}</span>
+    <h1> </h1>
+    {%endfor%}
+</div>
+
 
 <div class = "container">
-    
+
     {%for s in examples%}
     <h3>"{{s['sentence']}}"</h3>
     <h4>{{s['translation']}}</h4>
     <div id='edit_{{loop.index}}'></div>
-    <button id='edit_btn_{{loop.index}}'class="btn btn-sm edit_btn">Edit</button>
-    <button id='done_btn_{{loop.index}}'class="btn btn-sm done_btn">Modify</button>
-    
+    <button id='edit_btn_{{loop.index}}'class="btn btn-sm btn-success edit_btn">Edit</button>
+    <button id='done_btn_{{loop.index}}'class="btn btn-sm btn-success done_btn">Modify</button>
+    <button id='del_btn_{{loop.index}}'class="btn btn-sm btn-danger del_btn">delete</button>
     {%endfor%}
+    <div>
+
+    </div>
+    <br />
+    <div id='add_new'></div>
+    <button id='add_btn'class="btn btn-sm btn-success">Add Examples</button>
+    <button id='done_btn'class="btn btn-sm btn-success">Done</button>
+    <h3></h3>
 </div>
 <script src={{ url_for('static', filename='js/modify.js')}}></script>

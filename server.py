@@ -23,6 +23,28 @@ def edit():
         return render_template('edit.html', en = sen['sentence'],\
                 ch = sen['translation'], i = int(num))
     return '' 
+@app.route('/addsen_t')
+def addsen_t():
+    return render_template('add.html')
+    
+@app.route('/delsen', methods=['POST'])
+def delsen():
+    word = request.form['word']
+    num = request.form['num']
+    n = int(num) - 1
+    item = dict.searchWord(word)
+    del item['examples'][n]
+    return dict.modifyWord(item)
+    
+
+@app.route('/addsen', methods=['POST'])
+def addsen():
+    word = request.form['word']
+    en = request.form['en']
+    ch = request.form['ch']
+    item = dict.searchWord(word)
+    item['examples'].append({'sentence':en, 'translation': ch})
+    return dict.modifyWord(item)
 
 @app.route('/modifysen', methods=['POST'])
 def modifysen():
