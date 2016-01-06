@@ -1,6 +1,7 @@
-#include "/usr/include/python3.5m/Python.h"
 #include <string.h>
+
 #include "RB_Tree.h"
+#include "python/Python.h"
 
 
 /*
@@ -10,9 +11,6 @@
 char* showinfo();
 int getvalue();
 void setvalue(int value);
-static PyObject *myDic_showinfo(PyObject *self, PyObject *args);
-static PyObject *myDict_getvalue(PyObject *self, PyObject *args);
-static PyObject *myDict_setvalue(PyObject *self, PyObject *args);
 static PyObject *myDict_insert(PyObject *self, PyObject *args);
 static PyObject *myDict_modify_word(PyObject *self, PyObject *args);
 static PyObject *myDict_search(PyObject *self, PyObject *args);
@@ -20,31 +18,10 @@ static PyObject *myDict_suggestword(PyObject *self, PyObject *args);
 
 /************************************************************************************/
 
-//extern RB_Node *const nil;
 RB_Node **root;
-char buf[100] = "hello";
 
-int a;
 
 static PyMethodDef myDictMethods[] = {
-    {
-        "showinfo",
-        myDic_showinfo,
-        METH_VARARGS, 
-        "test for string return"
-    },
-    {
-        "getvalue",
-        myDict_getvalue,
-        METH_VARARGS,
-        "usestac"
-    },
-    {
-        "setvalue",
-        myDict_setvalue,
-        METH_VARARGS,
-        "usestac"
-    },
     {
         "insert_word",
         myDict_insert,
@@ -86,16 +63,6 @@ static struct PyModuleDef myDict =
     NULL,
     NULL
 };
-
-static PyObject *
-myDict_setvalue(PyObject *self, PyObject *args)
-{
-    int value;
-    if(!PyArg_ParseTuple(args, "i", &value))
-        return NULL;
-    setvalue(value);
-    return Py_BuildValue("i", a);
-}
 
 static PyObject *
 myDict_search(PyObject *self, PyObject *args)
@@ -158,47 +125,12 @@ myDict_insert(PyObject *self, PyObject *args)
     
 }
 
-    static PyObject *
-myDic_showinfo(PyObject *self, PyObject *args)
-{
-    char* str;
-    if(!PyArg_ParseTuple(args,""))
-        return NULL;
-    str = showinfo();
-    return Py_BuildValue("s", str);
-}
-
-
-    static PyObject *
-myDict_getvalue(PyObject *self, PyObject *args)
-{
-    if(!PyArg_ParseTuple(args,""))
-        return NULL;
-    return Py_BuildValue("i", a);
-}
 
 
     PyMODINIT_FUNC
 PyInit_dic_tree(void)
 {
-    a = 100;
     root = initTree();
     return PyModule_Create(&myDict);
 }
 
-int getvalue()
-{
-    return a;
-}
-
-char* showinfo()
-{
-    buf[0] = 'y';
-    return buf; 
-}
-
-void setvalue(int value)
-{
-    a = value;
-    return;
-}

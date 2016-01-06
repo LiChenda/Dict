@@ -33,7 +33,7 @@ def suggestWord(word_en):
     j = {'result': result}
     return json.dumps(result)
 
-intitfromfile("./items_comp.json")
+intitfromfile("./static/items_comp.json")
 
     
      

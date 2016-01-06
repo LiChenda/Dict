@@ -68,9 +68,6 @@ def typeahead():
 def index():
     return render_template('index.html')
 
-@app.route('/you')
-def you():
-    return 'you'
 
 if __name__ == '__main__':
     app.debug = True
