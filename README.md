@@ -12,12 +12,14 @@ This is a simple web application implemented by Python and C:
 
 Installation
 ---------------------
+
 ###requirements:
 - Python3 
 - pip for Python3
 - install Flask from pip:
 
     `$ pip install flask`
+
 ###compile  and run:
 - compile core module written by c:
 
