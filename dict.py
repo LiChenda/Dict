@@ -13,6 +13,7 @@ def searchWord(word_en):
     result = {}
     if(len(item)):
         result = json.loads(item[1])
+    print(result)
     return result
 
 def modifyWord(item):

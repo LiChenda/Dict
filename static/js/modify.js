@@ -11,19 +11,20 @@ $('#wordinfo').ready(function(){
             'num': num
         }, function(data, status){
             if(data == 'ture')
-                $('#searchbtn').click();
+                $('#wordinfo').load('/search?word=' + encodeURI($('#inputed').val()));
+
         });
 
     });
     $('.edit_btn').click(function(){
         s = $(this).attr('id');
         num = s[s.length - 1]; 
-        $('#edit_'+num).load('/edit?word='+word_en+'&num=' + num);
+        $('#edit_'+num).load('/edit?word='+encodeURI(word_en)+'&num=' + num);
         $(this).text('cancel');
         $('#done_btn_'+num).show();
         $('#del_btn_'+num).hide();
         $(this).click(function(){
-            $('#searchbtn').click();
+            $('#wordinfo').load('/search?word=' + encodeURI($('#inputed').val()));
         });
     });
     $('.done_btn').click(function(){
@@ -38,7 +39,7 @@ $('#wordinfo').ready(function(){
             'ch': ch
         }, function(data, status){
             if(data == 'ture')
-                $('#searchbtn').click();
+                $('#wordinfo').load('/search?word=' + encodeURI($('#inputed').val()));
         });
     });
     $('#done_btn').hide();
@@ -47,20 +48,20 @@ $('#wordinfo').ready(function(){
         $('#add_new').load('/addsen_t');
         $('#done_btn').show();
         $(this).click(function(){
-            $('#searchbtn').click();
+            $('#wordinfo').load('/search?word=' + encodeURI($('#inputed').val()));
         });
     });
     $('#done_btn').click(function(){
-       en = $('#input_add_en').val();  
-       ch = $('#input_add_ch').val();  
-       $.post('/addsen',{
+        en = $('#input_add_en').val();  
+        ch = $('#input_add_ch').val();  
+        $.post('/addsen',{
             'word': word_en,
             'en': en,
             'ch': ch
-       }, function(data, status){
+        }, function(data, status){
             if(data == 'ture')
-                $('#searchbtn').click();
-       });
+                $('#wordinfo').load('/search?word=' + encodeURI($('#inputed').val()));
+        });
     });
 
 })

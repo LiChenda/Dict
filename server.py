@@ -3,8 +3,9 @@ import dict
 
 app = Flask(__name__)
 
-@app.route('/search/<word>')
-def search(word):
+@app.route('/search')
+def search():
+    word = request.args.get('word')
     item = dict.searchWord(word)
     if(item):
         mean = item['meanings']  
@@ -70,6 +71,6 @@ def index():
 
 
 if __name__ == '__main__':
-    app.debug = True
+#    app.debug = True
     app.run(host='0.0.0.0')
 

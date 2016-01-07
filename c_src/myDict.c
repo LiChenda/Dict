@@ -8,9 +8,6 @@
  *  module functions define here
  *
  * */
-char* showinfo();
-int getvalue();
-void setvalue(int value);
 static PyObject *myDict_insert(PyObject *self, PyObject *args);
 static PyObject *myDict_modify_word(PyObject *self, PyObject *args);
 static PyObject *myDict_search(PyObject *self, PyObject *args);
