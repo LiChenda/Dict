@@ -1,7 +1,7 @@
 A Simple Dictionary
 =================
-- [Intro](#Intro)
-- [Installation](#Installation)
+- [Intro](#intro)
+- [Installation](#installation)
 Intro
 -----------------
 This is a simple web application implemented by Python and C:
