@@ -27,7 +27,6 @@ typedef struct _RB_Node
     struct _RB_Node *left;
     struct _RB_Node *parent;
     Word* word;     
-    //int testnum;
 } RB_Node;
 
 typedef struct _wordlistnode {

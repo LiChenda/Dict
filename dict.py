@@ -1,4 +1,10 @@
-import dic_tree
+try:
+    import dic_tree
+except Exception as e:
+    print('You should compile the module first')
+    exit()
+
+
 import json
 
 def intitfromfile(filename):
